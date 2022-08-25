@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="">
+
+    <main class="d-flex flex-nowrap">
+        <%- include('../partials/icons.ejs'); %>
+            <%- include('../partials/headerNew'); %>
+
+                <div class="b-example-divider b-example-vr"></div>
+                <div class="container">
+                    <div class="row">
+                        <h2>Your Profile</h2>
+                    </div>
+                    <div class="row gx-5">
+                        <form>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" value="<%- email %>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstname"
+                                    value="<%- firstName %>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastname"
+                                    value="<%- lastName %>">
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                              </div>
+                        </form>
+                    </div>
+                    <br/>
+                </div>
+    </main>
+</body>
+
+</html>

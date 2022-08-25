@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+    <main class="d-flex flex-nowrap">
+        <%- include('../partials/icons.ejs'); %>
+        <%- include('../partials/headerNew'); %>
+
+        <div class="b-example-divider b-example-vr"></div>
+        <div class="container">
+            <h1>Delegated Admin Application</h1>
+            <% if(hasSession){ %>
+            <h3>Hello <%- username %></h3> 
+            <% } %>
+        </div>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+    <main class="d-flex flex-nowrap">
+        <%- include('../partials/icons.ejs'); %>
+            <%- include('../partials/headerNew'); %>
+
+                <div class="b-example-divider b-example-vr"></div>
+
+                <div class="container overflow-auto">
+                    <!--Add Application Dashboard-->
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <% applications.forEach(function(application){ %>
+                            <div class="col" style="min-height: 150px;">
+                                <div class="card text-center" style="min-height: 173px">
+                                    <div class="text-center">
+                                        <img src="<%- application.logoUrl %>" class="img-thumbnail"
+                                            style="height: 104px; width: 106px; max-height: 100px; max-width: 100%">
+                                    </div>
+                                    <div class="card-body">
+                                        <a class="card-text" href="<%- application.linkUrl %>">
+                                            <%- application.label %>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+                </div>
+    </main>
+</body>
+
+</html>

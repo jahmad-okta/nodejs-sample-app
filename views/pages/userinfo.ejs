@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="">
+
+    <main class="d-flex flex-nowrap">
+        <%- include('../partials/icons.ejs'); %>
+            <%- include('../partials/headerNew'); %>
+
+                <div class="b-example-divider b-example-vr"></div>
+                <div class="container">
+                    <div class="row">
+                        <h2>User Info</h2>
+                    </div>
+                    <div class="row gx-5">
+                        <form id="user-data" method="post">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    value="<%- user.profile.email %>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstname" name="firstName"
+                                    value="<%- user.profile.firstName %>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="lastname" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastname" name="lastName"
+                                    value="<%- user.profile.lastName %>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="primaryPhone" class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" id="primaryPhone" name="primaryPhone"
+                                    value="<%- user.profile.primaryPhone %>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="user-app-group" class="form-label">Account Number</label>
+                                <select name="groups" id="groups">
+                                    <% for(var i=0; i < permissions.length; i++){ %>
+                                        <option value="<%- permissions[i] %>">Partner <%- permissions[i] %>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                            <% if(update) { %>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary" name="action"
+                                        value="update">Update</button>
+                                </div>
+                                <% } else{ %>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary" name="action"
+                                            value="create">Create</button>
+                                    </div>
+                                    <% } %>
+                        </form>
+
+                        <% if(error) { %>
+                            <div class="mb-3">
+                                <p id="errorSummary">
+                                    <%- error.errorSummary %>
+                                </p>
+                            </div>
+                            <% } %>
+                    </div>
+                    <br />
+                    <% if(update){ %>
+                        <% if(user.status=='STAGED' || user.status=='DEPROVISIONED' ){ %>
+                            <div class="row" id="user-activate">
+                                <form method="post">
+                                    <!--<a href="<%- user._links.activate.href %>">Activate User</a>-->
+                                    <input type="hidden" id="activationLink" name="link"
+                                        value="<%- user._links.activate.href %>">
+                                    <button type="submit" class="btn btn-link" name="action" value="activate">Activate
+                                        User</button>
+                                </form>
+                            </div>
+                            <% } %>
+                                <% if(user.status=='ACTIVE' || user.status=='PROVISIONED' ){ %>
+                                    <div class="row" id="user-sspr">
+                                        <form method="post">
+                                            <input type="hidden" id="resetPasswordLink" name="link"
+                                                value="<%- user._links.resetPassword.href %>">
+                                            <button type="submit" class="btn btn-link" name="action" value="reset">Reset
+                                                Password</button>
+                                        </form>
+                                        <form method="post">
+                                            <input type="hidden" id="deactivateLink" name="link"
+                                                value="<%- user._links.deactivate.href %>">
+                                            <button type="submit" class="btn btn-link" name="action"
+                                                value="deactivate">Deactive User</button>
+                                        </form>
+                                    </div>
+                                    <% } %>
+                                        <% } %>
+                </div>
+    </main>
+</body>
+
+</html>
